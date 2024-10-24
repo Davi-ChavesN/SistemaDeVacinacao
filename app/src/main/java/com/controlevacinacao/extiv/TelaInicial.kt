@@ -27,6 +27,7 @@ class TelaInicial : AppCompatActivity() {
 
         val chamarTelaCadastro = Intent(applicationContext, TelaCadastro::class.java)
         val chamarTelaUsuario = Intent(applicationContext, TelaUsuario::class.java)
+        val bundle = Bundle()
 
         val dataBase = Banco(applicationContext)
         val usuarioDAO = UsuarioDAO(dataBase)
@@ -43,6 +44,11 @@ class TelaInicial : AppCompatActivity() {
 
                 if(dadosUsuario[3].toString().equals(et_user_initial_screen.text.toString()) &&
                     dadosUsuario[4].toString().equals(toolsEncryption.encrypt(et_password_initial_screen.text.toString()))){
+                    bundle.apply {
+                        putInt("userCode", dadosUsuario[0].toString().toInt())
+                        putString("userName", dadosUsuario[1].toString())
+                    }
+                    chamarTelaUsuario.putExtra("user", bundle)
                     loginSuccess = true
                 }
             }
