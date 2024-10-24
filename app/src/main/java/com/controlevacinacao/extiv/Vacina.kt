@@ -1,15 +1,11 @@
 package com.controlevacinacao.extiv
 
-class Vacina(nome: String, descricao: String) {
-    companion object {
-        private var proximoCodigoVacina = 1
-    }
-
+class Vacina(codigo: Int, nome: String, descricao: String) {
     var codigo: Int
     var nome: String
     var descricao: String
     init {
-        this.codigo = proximoCodigoVacina++
+        this.codigo = codigo
         this.nome = nome
         this.descricao = descricao
     }

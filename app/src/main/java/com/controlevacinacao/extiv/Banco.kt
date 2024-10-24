@@ -18,6 +18,8 @@ class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 1) {
         val codigoPet = "codigo"
         val nomePet = "nome"
         val raca = "raca"
+        val porte = "porte"
+        val dataNascimento = "data_nascimento"
         val codigoUserFK = "codigo_dono"
 
         val tabelaVacinas = "vacinas"
@@ -43,6 +45,8 @@ class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 1) {
                     "${codigoPet} INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "${nomePet} TEXT," +
                     "${raca} TEXT," +
+                    "${porte} TEXT," +
+                    "${dataNascimento} TEXT," +
                     "${codigoUserFK} INTEGER," +
                     "FOREIGN KEY(${codigoUserFK}) REFERENCES ${tabelaUsuarios}(${codigoUser}));"
         db.execSQL(SQL_criacao)

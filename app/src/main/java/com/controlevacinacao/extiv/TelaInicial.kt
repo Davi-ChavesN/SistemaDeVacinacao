@@ -58,9 +58,6 @@ class TelaInicial : AppCompatActivity() {
         bt_register_initial_screen.setOnClickListener {
             startActivity(chamarTelaCadastro)
         }
-
-//        usuarioDAO.delete(1)
-
     }
 
     fun limparCampos() {

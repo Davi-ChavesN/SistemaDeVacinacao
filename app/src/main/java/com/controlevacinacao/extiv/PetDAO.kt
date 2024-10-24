@@ -12,9 +12,10 @@ class PetDAO(banco: Banco) {
     fun insert(pet: Pet) {
         val db_insert =this.banco.writableDatabase
         var cv_valores = ContentValues().apply {
-            put("codigo", pet.codigo)
             put("nome", pet.nome)
             put("raca", pet.raca)
+            put("porte", pet.porte)
+            put("data_nascimento", pet.dataNascimento)
             put("codigo_dono", pet.codigo_dono)
         }
         val confirmaInsert = db_insert?.insert("pets", null, cv_valores)
@@ -29,10 +30,12 @@ class PetDAO(banco: Banco) {
         with(cursor) {
             while (moveToNext()) {
                 val codigo = getLong(getColumnIndexOrThrow("codigo"))
-                val nome = getLong(getColumnIndexOrThrow("nome"))
-                val raca = getLong(getColumnIndexOrThrow("raca"))
+                val nome = getString(getColumnIndexOrThrow("nome"))
+                val raca = getString(getColumnIndexOrThrow("raca"))
+                val porte = getString(getColumnIndexOrThrow("porte"))
+                val dataNascimento = getString(getColumnIndexOrThrow("data_nascimento"))
                 val codigo_dono = getLong(getColumnIndexOrThrow("codigo_dono"))
-                listaPets.add("${codigo} - ${nome} - ${raca} - ${codigo_dono}")
+                listaPets.add("${codigo} - ${nome} - ${raca} - ${porte} - ${dataNascimento} - ${codigo_dono}")
             }
         }
         cursor.close()
@@ -47,10 +50,12 @@ class PetDAO(banco: Banco) {
         with(cursor) {
             while (moveToNext()) {
                 val codigo = getLong(getColumnIndexOrThrow("codigo"))
-                val nome = getLong(getColumnIndexOrThrow("nome"))
-                val raca = getLong(getColumnIndexOrThrow("raca"))
+                val nome = getString(getColumnIndexOrThrow("nome"))
+                val raca = getString(getColumnIndexOrThrow("raca"))
+                val porte = getString(getColumnIndexOrThrow("porte"))
+                val dataNascimento = getString(getColumnIndexOrThrow("data_nascimento"))
                 val codigo_dono = getLong(getColumnIndexOrThrow("codigo_dono"))
-                listaPets.add("${codigo} - ${nome} - ${raca} - ${codigo_dono}")
+                listaPets.add("${codigo} - ${nome} - ${raca} - ${porte} - ${dataNascimento} - ${codigo_dono}")
             }
         }
         cursor.close()
@@ -62,6 +67,8 @@ class PetDAO(banco: Banco) {
         var cv_valores = ContentValues().apply {
             put("nome", pet.nome)
             put("raca", pet.raca)
+            put("porte", pet.porte)
+            put("data_nascimento", pet.dataNascimento)
             put("codigo_dono", pet.codigo_dono)
         }
         val condicao = "codigo = ${pet.codigo}"

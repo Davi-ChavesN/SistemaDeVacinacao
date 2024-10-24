@@ -1,18 +1,20 @@
 package com.controlevacinacao.extiv
 
-class Pet(nome: String, raca: String, codigo_dono: Int) {
-    companion object {
-        private var proximoCodigoPet = 1
-    }
+import java.sql.Date
 
+class Pet(codigo: Int, nome: String, raca: String, porte: String, dataNascimento: String, codigo_dono: Int) {
     var codigo: Int
     var nome: String
     var raca: String
+    var porte: String
+    var dataNascimento: String
     var codigo_dono: Int
     init {
-        this.codigo = proximoCodigoPet++
+        this.codigo = codigo
         this.nome = nome
         this.raca = raca
+        this.porte = porte
+        this.dataNascimento = dataNascimento
         this.codigo_dono = codigo_dono
     }
 }
