@@ -37,7 +37,7 @@ class TelaCadastroPet : AppCompatActivity() {
         rb_size_large_pet_register_screen = findViewById(R.id.rb_size_large_pet_register_screen)
         bt_add_pet_register_screen = findViewById(R.id.bt_add_pet_register_screen)
 
-        val dataBase = Banco(applicationContext)
+        val dataBase = Banco.getInstance(this)
         val petDAO = PetDAO(dataBase)
         val bundle = intent.getBundleExtra("user")!!
 

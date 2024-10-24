@@ -29,7 +29,7 @@ class TelaCadastro : AppCompatActivity() {
         et_password_register_screen = findViewById(R.id.et_password_register_screen)
         bt_register_register_screen = findViewById(R.id.bt_register_register_screen)
 
-        val dataBase = Banco(applicationContext)
+        val dataBase = Banco.getInstance(this)
         val usuarioDAO = UsuarioDAO(dataBase)
         val toolsEncryption = ToolsEncryption()
 

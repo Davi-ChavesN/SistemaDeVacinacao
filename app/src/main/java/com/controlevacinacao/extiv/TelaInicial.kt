@@ -37,6 +37,7 @@ class TelaInicial : AppCompatActivity() {
         bt_login_initial_screen.setOnClickListener {
             var loginSuccess = false
             val listaUsuarios = usuarioDAO.select()
+            Log.i("Teste", "${listaUsuarios}")
 
             for(usuario in listaUsuarios){
                 var dadosUsuario = usuario.split(" - ").toTypedArray()

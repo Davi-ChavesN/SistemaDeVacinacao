@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ControleVacinacao"
         tools:targetApi="31">
-
+        <activity
+            android:name=".TelaEdicaoUsuario"
+            android:exported="false" />
         <activity
             android:name=".TelaCadastroPet"
             android:exported="false" />
@@ -20,21 +22,20 @@
             android:name=".TelaUsuario"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".TelaCadastro"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".TelaInicial"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
+
 </manifest>
