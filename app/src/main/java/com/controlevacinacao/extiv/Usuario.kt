@@ -1,17 +1,13 @@
 package com.controlevacinacao.extiv
 
-class Usuario(nome: String, email: String, usuario: String, senha: String) {
-    companion object {
-        private var proximoCodigo = 1
-    }
-
+class Usuario(codigo: Int, nome: String, email: String, usuario: String, senha: String) {
     var codigo: Int
     var nome: String
     var email: String
     var usuario: String
     var senha: String
     init {
-        this.codigo = proximoCodigo++
+        this.codigo = codigo
         this.nome = nome
         this.email = email
         this.usuario = usuario

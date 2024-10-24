@@ -1,13 +1,11 @@
 package com.controlevacinacao.extiv
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class TelaCadastro : AppCompatActivity() {
@@ -21,7 +19,7 @@ class TelaCadastro : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tela_cadastro)
+        setContentView(R.layout.tela_cadastro)
 
 
         bt_return_register_screen = findViewById(R.id.bt_return_register_screen)
@@ -33,6 +31,7 @@ class TelaCadastro : AppCompatActivity() {
 
         val dataBase = Banco(applicationContext)
         val usuarioDAO = UsuarioDAO(dataBase)
+        val toolsEncryption = ToolsEncryption()
 
 
         bt_register_register_screen.setOnClickListener {
@@ -40,9 +39,10 @@ class TelaCadastro : AppCompatActivity() {
                 et_user_register_screen.text.isBlank() || et_password_register_screen.text.isBlank()){
                 Toast.makeText(this, "Prencha todos os campos", Toast.LENGTH_SHORT).show()
             }else{
-                val usuario = Usuario(et_name_register_screen.text.toString(), et_email_register_screen.text.toString(),
-                    et_user_register_screen.text.toString(), et_password_register_screen.text.hashCode().toString())
+                var usuario = Usuario(0, et_name_register_screen.text.toString(), et_email_register_screen.text.toString(),
+                    et_user_register_screen.text.toString(), toolsEncryption.encrypt(et_password_register_screen.text.toString()))
                 usuarioDAO.insert(usuario)
+                Log.i("TESTE", "${usuario.codigo} - ${usuario.nome} - ${usuario.email} - ${usuario.usuario} - ${usuario.senha}")
                 Toast.makeText(this, "Usuário cadastrado", Toast.LENGTH_SHORT).show()
                 limparCampos()
             }

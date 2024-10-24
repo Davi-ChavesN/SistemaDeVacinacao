@@ -10,9 +10,8 @@ class UsuarioDAO(banco: Banco) {
     }
 
     fun insert(usuario: Usuario) {
-        val db_insert =this.banco.writableDatabase
+        val db_insert = this.banco.writableDatabase
         var cv_valores = ContentValues().apply {
-            put("codigo", usuario.codigo)
             put("nome", usuario.nome)
             put("email", usuario.email)
             put("usuario", usuario.usuario)
@@ -30,10 +29,10 @@ class UsuarioDAO(banco: Banco) {
         with(cursor) {
             while (moveToNext()) {
                 val codigo = getLong(getColumnIndexOrThrow("codigo"))
-                val nome = getLong(getColumnIndexOrThrow("nome"))
-                val email = getLong(getColumnIndexOrThrow("email"))
-                val usuario = getLong(getColumnIndexOrThrow("usuario"))
-                val senha = getLong(getColumnIndexOrThrow("senha"))
+                val nome = getString(getColumnIndexOrThrow("nome"))
+                val email = getString(getColumnIndexOrThrow("email"))
+                val usuario = getString(getColumnIndexOrThrow("usuario"))
+                val senha = getString(getColumnIndexOrThrow("senha"))
                 listaUsuarios.add("${codigo} - ${nome} - ${email} - ${usuario} - ${senha}")
             }
         }
@@ -49,10 +48,10 @@ class UsuarioDAO(banco: Banco) {
         with(cursor) {
             while (moveToNext()) {
                 val codigo = getLong(getColumnIndexOrThrow("codigo"))
-                val nome = getLong(getColumnIndexOrThrow("nome"))
-                val email = getLong(getColumnIndexOrThrow("email"))
-                val usuario = getLong(getColumnIndexOrThrow("usuario"))
-                val senha = getLong(getColumnIndexOrThrow("senha"))
+                val nome = getString(getColumnIndexOrThrow("nome"))
+                val email = getString(getColumnIndexOrThrow("email"))
+                val usuario = getString(getColumnIndexOrThrow("usuario"))
+                val senha = getString(getColumnIndexOrThrow("senha"))
                 listaUsuarios.add("${codigo} - ${nome} - ${email} - ${usuario} - ${senha}")
             }
         }

@@ -21,7 +21,7 @@ class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 1) {
         val codigoUserFK = "codigo_dono"
 
         val tabelaVacinas = "vacinas"
-        val codigo = "codigo"
+        val codigoVacina = "codigo"
         val nomeVacina = "nome"
         val descricao = "descricao"
 
@@ -30,29 +30,35 @@ class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 1) {
         val codigoVacinaFK = "codigo_vacina"
         val dataAplicacao = "data_aplicacao"
 
-        val SQL_criacao =
+        var SQL_criacao =
             "CREATE TABLE ${tabelaUsuarios} (" +
-                    "${codigoUser} INTEGER PRIMARY KEY," +
+                    "${codigoUser} INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "${nomeUser} TEXT," +
                     "${email} TEXT," +
                     "${usuario} TEXT," +
-                    "${senha} TEXT);" +
+                    "${senha} TEXT);"
+        db.execSQL(SQL_criacao)
+        SQL_criacao =
             "CREATE TABLE ${tabelaPets} (" +
-                    "${codigoPet} INTEGER PRIMARY KEY," +
+                    "${codigoPet} INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "${nomePet} TEXT," +
                     "${raca} TEXT," +
                     "${codigoUserFK} INTEGER," +
-                    "FOREIGN KEY(${codigoUserFK}) REFERENCES ${tabelaUsuarios}(${codigoUser}));" +
+                    "FOREIGN KEY(${codigoUserFK}) REFERENCES ${tabelaUsuarios}(${codigoUser}));"
+        db.execSQL(SQL_criacao)
+        SQL_criacao =
             "CREATE TABLE ${tabelaVacinas} (" +
-                    "${codigo} INTEGER PRIMARY KEY," +
+                    "${codigoVacina} INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "${nomeVacina} TEXT," +
-                    "${descricao} TEXT);" +
+                    "${descricao} TEXT);"
+        db.execSQL(SQL_criacao)
+        SQL_criacao =
             "CREATE TABLE ${tabelaPetVacina} (" +
                     "${codigoPetFK} INTEGER," +
                     "${codigoVacinaFK} INTEGER," +
                     "${dataAplicacao} DATE," +
                     "FOREIGN KEY(${codigoPetFK}) REFERENCES ${tabelaPets}(${codigoPet})," +
-                    "FOREIGN KEY(${codigoVacinaFK}) REFERENCES ${tabelaVacinas}(${codigo}));"
+                    "FOREIGN KEY(${codigoVacinaFK}) REFERENCES ${tabelaVacinas}(${codigoVacina}));"
         db.execSQL(SQL_criacao)
 
         val insertVacina = db.compileStatement("INSERT INTO vacinas (nome, descricao) VALUES (?, ?)")
