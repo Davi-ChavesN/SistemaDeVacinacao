@@ -45,7 +45,7 @@ class PetDAO(banco: Banco) {
     fun selectComWhere(codigo: Long): ArrayList<String> {
         var listaPets = ArrayList<String>()
         val db_read = this.banco.readableDatabase
-        var cursor = db_read.rawQuery("SELECT * FROM pets WHERE codigo = ${codigo}", null)
+        var cursor = db_read.rawQuery("SELECT * FROM pets WHERE codigo_dono = ${codigo}", null)
 
         with(cursor) {
             while (moveToNext()) {
