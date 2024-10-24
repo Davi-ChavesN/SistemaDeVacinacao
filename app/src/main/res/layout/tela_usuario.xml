@@ -21,33 +21,6 @@
         app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="509dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.99">
-
-        <ScrollView
-            android:id="@+id/sv_scroller"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:scrollbars="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/ll_box_user_screen"
         android:layout_width="316dp"
         android:layout_height="105dp"
@@ -86,7 +59,7 @@
                 android:layout_height="35dp"
                 android:textAlignment="center"
                 android:textSize="27sp"
-                tools:text="DaviChaves"/>
+                tools:text="DaviChaves" />
 
             <TextView
                 android:id="@+id/tv_uid_user_screen"
@@ -94,7 +67,7 @@
                 android:layout_height="35dp"
                 android:paddingLeft="10dp"
                 android:textSize="20sp"
-                tools:text="UID: 000000000"/>
+                tools:text="UID: 000000000" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -130,5 +103,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.25"
         app:srcCompat="@drawable/plussign" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_user_screen"
+        android:layout_width="387dp"
+        android:layout_height="468dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.939" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
