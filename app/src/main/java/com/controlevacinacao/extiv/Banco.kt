@@ -6,65 +6,67 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 1) {
 
+    companion object {
+        @Volatile
+        private var INSTANCE: Banco? = null
+
+        fun getInstance(context: Context): Banco {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Banco(context.applicationContext)
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+
     override fun onCreate(db: SQLiteDatabase) {
-        val tabelaUsuarios = "usuarios"
-        val codigoUser = "codigo"
-        val nomeUser = "nome"
-        val email = "email"
-        val usuario = "usuario"
-        val senha = "senha"
+        db.execSQL("PRAGMA foreign_keys=ON;")
 
-        val tabelaPets = "pets"
-        val codigoPet = "codigo"
-        val nomePet = "nome"
-        val raca = "raca"
-        val porte = "porte"
-        val dataNascimento = "data_nascimento"
-        val codigoUserFK = "codigo_dono"
+        val SQL_criacao1 = """
+            CREATE TABLE usuarios (
+                codigo INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome TEXT,
+                email TEXT,
+                usuario TEXT,
+                senha TEXT
+            );
+        """
+        db.execSQL(SQL_criacao1)
 
-        val tabelaVacinas = "vacinas"
-        val codigoVacina = "codigo"
-        val nomeVacina = "nome"
-        val descricao = "descricao"
+        val SQL_criacao2 = """
+            CREATE TABLE pets (
+                codigo INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome TEXT,
+                raca TEXT,
+                porte TEXT,
+                data_nascimento TEXT,
+                codigo_dono INTEGER,
+                FOREIGN KEY(codigo_dono) REFERENCES usuarios(codigo)
+            );
+        """
+        db.execSQL(SQL_criacao2)
 
-        val tabelaPetVacina = "pet_vacina"
-        val codigoPetFK = "codigo_pet"
-        val codigoVacinaFK = "codigo_vacina"
-        val dataAplicacao = "data_aplicacao"
+        val SQL_criacao3 = """
+            CREATE TABLE vacinas (
+                codigo INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome TEXT,
+                descricao TEXT
+            );
+        """
+        db.execSQL(SQL_criacao3)
 
-        var SQL_criacao =
-            "CREATE TABLE ${tabelaUsuarios} (" +
-                    "${codigoUser} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "${nomeUser} TEXT," +
-                    "${email} TEXT," +
-                    "${usuario} TEXT," +
-                    "${senha} TEXT);"
-        db.execSQL(SQL_criacao)
-        SQL_criacao =
-            "CREATE TABLE ${tabelaPets} (" +
-                    "${codigoPet} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "${nomePet} TEXT," +
-                    "${raca} TEXT," +
-                    "${porte} TEXT," +
-                    "${dataNascimento} TEXT," +
-                    "${codigoUserFK} INTEGER," +
-                    "FOREIGN KEY(${codigoUserFK}) REFERENCES ${tabelaUsuarios}(${codigoUser}));"
-        db.execSQL(SQL_criacao)
-        SQL_criacao =
-            "CREATE TABLE ${tabelaVacinas} (" +
-                    "${codigoVacina} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "${nomeVacina} TEXT," +
-                    "${descricao} TEXT);"
-        db.execSQL(SQL_criacao)
-        SQL_criacao =
-            "CREATE TABLE ${tabelaPetVacina} (" +
-                    "${codigoPetFK} INTEGER," +
-                    "${codigoVacinaFK} INTEGER," +
-                    "${dataAplicacao} DATE," +
-                    "FOREIGN KEY(${codigoPetFK}) REFERENCES ${tabelaPets}(${codigoPet})," +
-                    "FOREIGN KEY(${codigoVacinaFK}) REFERENCES ${tabelaVacinas}(${codigoVacina}));"
-        db.execSQL(SQL_criacao)
+        val SQL_criacao4 = """
+            CREATE TABLE pet_vacina (
+                codigo_pet INTEGER,
+                codigo_vacina INTEGER,
+                data_aplicacao DATE,
+                FOREIGN KEY(codigo_pet) REFERENCES pets(codigo),
+                FOREIGN KEY(codigo_vacina) REFERENCES vacinas(codigo)
+            );
+        """
+        db.execSQL(SQL_criacao4)
 
+        // Insert sample data
         val insertVacina = db.compileStatement("INSERT INTO vacinas (nome, descricao) VALUES (?, ?)")
         insertVacina.bindString(1, "Vacina Antirrábica")
         insertVacina.bindString(2, "Protege contra a raiva")
@@ -77,10 +79,37 @@ class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 1) {
         insertVacina.bindString(1, "Vacina Giardia")
         insertVacina.bindString(2, "Protege contra giardíase")
         insertVacina.executeInsert()
+
+        // Make sure to insert a user before pets if you have a foreign key constraint
+//        val insertUsuario = db.compileStatement("INSERT INTO usuarios (nome, email, usuario, senha) VALUES (?, ?, ?, ?)")
+//        insertUsuario.bindString(1, "John Doe")
+//        insertUsuario.bindString(2, "john@example.com")
+//        insertUsuario.bindString(3, "johndoe")
+//        insertUsuario.bindString(4, "password")
+//        insertUsuario.executeInsert()
+//
+//        val insertPet = db.compileStatement("INSERT INTO pets (nome, raca, porte, data_nascimento, codigo_dono) " +
+//                "VALUES (?, ?, ?, ?, ?)")
+//        insertPet.bindString(1, "Caco")
+//        insertPet.bindString(2, "Yorkshire")
+//        insertPet.bindString(3, "Pequeno")
+//        insertPet.bindString(4, "2007-01-01")
+//        insertPet.bindLong(5, 1) // Make sure this user exists
+//        insertPet.executeInsert()
+//
+//        insertPet.bindString(1, "Lady")
+//        insertPet.bindString(2, "Poodle")
+//        insertPet.bindString(3, "Médio")
+//        insertPet.bindString(4, "2009-01-01")
+//        insertPet.bindLong(5, 1)
+//        insertPet.executeInsert()
     }
 
-    override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-        TODO("Not yet implemented")
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.execSQL("DROP TABLE IF EXISTS pets")
+        db.execSQL("DROP TABLE IF EXISTS usuarios")
+        db.execSQL("DROP TABLE IF EXISTS vacinas")
+        db.execSQL("DROP TABLE IF EXISTS pet_vacina")
+        onCreate(db)
     }
-
 }

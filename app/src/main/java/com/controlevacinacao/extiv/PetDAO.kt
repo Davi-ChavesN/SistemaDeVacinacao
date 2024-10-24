@@ -10,7 +10,7 @@ class PetDAO(banco: Banco) {
     }
 
     fun insert(pet: Pet) {
-        val db_insert =this.banco.writableDatabase
+        val db_insert = this.banco.writableDatabase
         var cv_valores = ContentValues().apply {
             put("nome", pet.nome)
             put("raca", pet.raca)
