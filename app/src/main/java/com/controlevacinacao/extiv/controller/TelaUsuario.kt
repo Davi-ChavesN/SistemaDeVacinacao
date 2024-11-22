@@ -1,5 +1,5 @@
 
-package com.controlevacinacao.extiv
+package com.controlevacinacao.extiv.controller
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,10 +10,11 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.controlevacinacao.extiv.R
+import com.controlevacinacao.extiv.banco.Banco
+import com.controlevacinacao.extiv.model.PetDAO
+import com.controlevacinacao.extiv.model.UsuarioDAO
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.controlevacinacao.extiv.databinding.TelaUsuarioBinding
 
 class TelaUsuario : AppCompatActivity() {
 
@@ -65,6 +66,49 @@ class TelaUsuario : AppCompatActivity() {
         bt_return_user_screen.setOnClickListener {
             finish()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        bt_return_user_screen = findViewById(R.id.bt_return_user_screen)
+        iv_user_screen = findViewById(R.id.iv_user_screen)
+        tv_name_user_screen = findViewById(R.id.tv_name_user_screen)
+        tv_uid_user_screen = findViewById(R.id.tv_uid_user_screen)
+        bt_add_pet_user_screen = findViewById(R.id.bt_add_pet_user_screen)
+        lv_pets_user_screen = findViewById(R.id.lv_pets_user_screen)
+
+        val chamarTelaEdicaoUsuario = Intent(applicationContext, TelaEdicaoUsuario::class.java)
+        val chamarTelaCadastroPet = Intent(applicationContext, TelaCadastroPet::class.java)
+        val bundle = intent.getBundleExtra("user")!!
+        tv_name_user_screen.text = bundle.getString("userName", "").toString()
+        tv_uid_user_screen.text = "UID: ${bundle.getInt("userCode", 0).toString()}"
+        var userCode = bundle.getInt("userCode", 0).toString().toLong()
+
+        val dataBase = Banco.getInstance(this)
+        val usuarioDAO = UsuarioDAO(dataBase)
+        val petDAO = PetDAO(dataBase)
+
+
+        mostrarPets(petDAO, userCode)
+
+        iv_user_screen.setOnClickListener {
+            chamarTelaEdicaoUsuario.putExtra("user", bundle)
+            startActivity(chamarTelaEdicaoUsuario)
+        }
+
+        bt_add_pet_user_screen.setOnClickListener {
+            var pets = petDAO.select()
+            Log.i("Teste", pets.toString())
+            chamarTelaCadastroPet.putExtra("user", bundle)
+            mostrarPets(petDAO, userCode)
+            startActivity(chamarTelaCadastroPet)
+        }
+
+        bt_return_user_screen.setOnClickListener {
+            finish()
+        }
+
     }
 
     fun mostrarPets(petDAO: PetDAO, userCode: Long){

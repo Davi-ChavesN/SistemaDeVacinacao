@@ -1,4 +1,4 @@
-package com.controlevacinacao.extiv
+package com.controlevacinacao.extiv.model
 
 class Usuario(codigo: Int, nome: String, email: String, usuario: String, senha: String) {
     var codigo: Int

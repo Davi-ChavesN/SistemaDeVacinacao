@@ -13,21 +13,24 @@
         android:theme="@style/Theme.ControleVacinacao"
         tools:targetApi="31">
         <activity
-            android:name=".TelaEdicaoUsuario"
+            android:name=".controller.TelaEdicaoPet"
             android:exported="false" />
         <activity
-            android:name=".TelaCadastroPet"
+            android:name=".controller.TelaEdicaoUsuario"
             android:exported="false" />
         <activity
-            android:name=".TelaUsuario"
+            android:name=".controller.TelaCadastroPet"
+            android:exported="false" />
+        <activity
+            android:name=".controller.TelaUsuario"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TelaCadastro"
+            android:name=".controller.TelaCadastro"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TelaInicial"
+            android:name=".controller.TelaInicial"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

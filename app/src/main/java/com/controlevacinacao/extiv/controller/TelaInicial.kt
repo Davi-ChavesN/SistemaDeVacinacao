@@ -1,4 +1,4 @@
-package com.controlevacinacao.extiv
+package com.controlevacinacao.extiv.controller
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.controlevacinacao.extiv.R
+import com.controlevacinacao.extiv.tools.ToolsEncryption
+import com.controlevacinacao.extiv.banco.Banco
+import com.controlevacinacao.extiv.model.UsuarioDAO
 
 class TelaInicial : AppCompatActivity() {
 

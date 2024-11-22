@@ -1,4 +1,4 @@
-package com.controlevacinacao.extiv
+package com.controlevacinacao.extiv.controller
 
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +8,10 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.controlevacinacao.extiv.R
+import com.controlevacinacao.extiv.banco.Banco
+import com.controlevacinacao.extiv.model.Pet
+import com.controlevacinacao.extiv.model.PetDAO
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class TelaCadastroPet : AppCompatActivity() {
