@@ -1,4 +1,4 @@
-package com.controlevacinacao.extiv
+package com.controlevacinacao.extiv.tools
 
 import java.security.MessageDigest
 

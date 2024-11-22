@@ -1,4 +1,4 @@
-package com.controlevacinacao.extiv
+package com.controlevacinacao.extiv.model
 
 class Vacina(codigo: Int, nome: String, descricao: String) {
     var codigo: Int

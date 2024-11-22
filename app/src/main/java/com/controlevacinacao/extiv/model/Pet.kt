@@ -1,6 +1,4 @@
-package com.controlevacinacao.extiv
-
-import java.sql.Date
+package com.controlevacinacao.extiv.model
 
 class Pet(codigo: Int, nome: String, raca: String, porte: String, dataNascimento: String, codigo_dono: Int) {
     var codigo: Int

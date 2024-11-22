@@ -1,4 +1,4 @@
-package com.controlevacinacao.extiv
+package com.controlevacinacao.extiv.controller
 
 import android.os.Bundle
 import android.util.Log
@@ -6,6 +6,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.controlevacinacao.extiv.R
+import com.controlevacinacao.extiv.tools.ToolsEncryption
+import com.controlevacinacao.extiv.banco.Banco
+import com.controlevacinacao.extiv.model.Usuario
+import com.controlevacinacao.extiv.model.UsuarioDAO
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class TelaCadastro : AppCompatActivity() {

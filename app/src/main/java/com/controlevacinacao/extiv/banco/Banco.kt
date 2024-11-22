@@ -1,4 +1,4 @@
-package com.controlevacinacao.extiv
+package com.controlevacinacao.extiv.banco
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

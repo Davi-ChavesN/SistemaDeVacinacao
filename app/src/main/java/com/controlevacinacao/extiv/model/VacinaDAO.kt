@@ -1,7 +1,8 @@
-package com.controlevacinacao.extiv
+package com.controlevacinacao.extiv.model
 
 import android.content.ContentValues
 import android.util.Log
+import com.controlevacinacao.extiv.banco.Banco
 
 class VacinaDAO(banco: Banco) {
     var banco: Banco

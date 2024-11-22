@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaCadastroPet">
+    tools:context=".controller.TelaCadastroPet">
 
     <EditText
         android:id="@+id/et_breed_pet_register_screen"
