@@ -63,7 +63,7 @@ class TelaCadastroPet : AppCompatActivity() {
                     size = "Isso não deveria estar aqui"
                 }
                 var pet = Pet(0, et_name_pet_register_screen.text.toString(), et_breed_pet_register_screen.text.toString(),
-                    size, et_birthdate_pet_register_screen.text.toString(), bundle.getInt("userCode", 0))
+                    size, et_birthdate_pet_register_screen.text.toString(), bundle.getInt("userCode", 0), "")
                 petDAO.insert(pet)
                 Log.i("TESTE", "${pet.codigo} - ${pet.nome} - ${pet.raca} - ${pet.porte} - ${pet.dataNascimento} - ${pet.codigo_dono}")
                 Toast.makeText(this, "Usuário cadastrado", Toast.LENGTH_SHORT).show()

@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 1) {
+class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 2) {
 
     companion object {
         @Volatile
@@ -41,6 +41,7 @@ class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 1) {
                 porte TEXT,
                 data_nascimento TEXT,
                 codigo_dono INTEGER,
+                vacinas TEXT,
                 FOREIGN KEY(codigo_dono) REFERENCES usuarios(codigo)
             );
         """
@@ -55,19 +56,20 @@ class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 1) {
         """
         db.execSQL(SQL_criacao3)
 
-        val SQL_criacao4 = """
-            CREATE TABLE pet_vacina (
-                codigo_pet INTEGER,
-                codigo_vacina INTEGER,
-                data_aplicacao DATE,
-                FOREIGN KEY(codigo_pet) REFERENCES pets(codigo),
-                FOREIGN KEY(codigo_vacina) REFERENCES vacinas(codigo)
-            );
-        """
-        db.execSQL(SQL_criacao4)
+//        val SQL_criacao4 = """
+//            CREATE TABLE pet_vacina (
+//                codigo_pet INTEGER,
+//                codigo_vacina INTEGER,
+//                data_aplicacao DATE,
+//                FOREIGN KEY(codigo_pet) REFERENCES pets(codigo),
+//                FOREIGN KEY(codigo_vacina) REFERENCES vacinas(codigo)
+//            );
+//        """
+//        db.execSQL(SQL_criacao4)
 
         // Insert sample data
         val insertVacina = db.compileStatement("INSERT INTO vacinas (nome, descricao) VALUES (?, ?)")
+
         insertVacina.bindString(1, "Vacina Antirrábica")
         insertVacina.bindString(2, "Protege contra a raiva")
         insertVacina.executeInsert()
@@ -79,6 +81,35 @@ class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 1) {
         insertVacina.bindString(1, "Vacina Giardia")
         insertVacina.bindString(2, "Protege contra giardíase")
         insertVacina.executeInsert()
+
+        insertVacina.bindString(1, "Vacina V10")
+        insertVacina.bindString(2, "Protege contra dez doenças, incluindo parvovirose e cinomose")
+        insertVacina.executeInsert()
+
+        insertVacina.bindString(1, "Vacina Leptospirose")
+        insertVacina.bindString(2, "Protege contra infecções causadas por Leptospira")
+        insertVacina.executeInsert()
+
+        insertVacina.bindString(1, "Vacina Bordetella")
+        insertVacina.bindString(2, "Protege contra a tosse dos canis (traqueobronquite infecciosa)")
+        insertVacina.executeInsert()
+
+        insertVacina.bindString(1, "Vacina de Influenza Canina")
+        insertVacina.bindString(2, "Protege contra a gripe canina")
+        insertVacina.executeInsert()
+
+        insertVacina.bindString(1, "Vacina de Leishmaniose")
+        insertVacina.bindString(2, "Ajuda a prevenir a leishmaniose visceral em cães")
+        insertVacina.executeInsert()
+
+        insertVacina.bindString(1, "Vacina de Hepatite Infecciosa Canina")
+        insertVacina.bindString(2, "Protege contra a hepatite infecciosa causada pelo adenovírus canino")
+        insertVacina.executeInsert()
+
+        insertVacina.bindString(1, "Vacina Parvovirose")
+        insertVacina.bindString(2, "Protege contra a parvovirose canina")
+        insertVacina.executeInsert()
+
 
         // Make sure to insert a user before pets if you have a foreign key constraint
 //        val insertUsuario = db.compileStatement("INSERT INTO usuarios (nome, email, usuario, senha) VALUES (?, ?, ?, ?)")

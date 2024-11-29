@@ -18,6 +18,7 @@ class PetDAO(banco: Banco) {
             put("porte", pet.porte)
             put("data_nascimento", pet.dataNascimento)
             put("codigo_dono", pet.codigo_dono)
+            put("vacinas", pet.vacinas)
         }
         val confirmaInsert = db_insert?.insert("pets", null, cv_valores)
         Log.i("Teste Insercao Pet", "Insercao: ${confirmaInsert}")
@@ -36,7 +37,8 @@ class PetDAO(banco: Banco) {
                 val porte = getString(getColumnIndexOrThrow("porte"))
                 val dataNascimento = getString(getColumnIndexOrThrow("data_nascimento"))
                 val codigo_dono = getLong(getColumnIndexOrThrow("codigo_dono"))
-                listaPets.add("${codigo} - ${nome} - ${raca} - ${porte} - ${dataNascimento} - ${codigo_dono}")
+                val vacinas = getString(getColumnIndexOrThrow("vacinas"))
+                listaPets.add("${codigo} - ${nome} - ${raca} - ${porte} - ${dataNascimento} - ${codigo_dono} - ${vacinas}")
             }
         }
         cursor.close()
@@ -56,7 +58,8 @@ class PetDAO(banco: Banco) {
                 val porte = getString(getColumnIndexOrThrow("porte"))
                 val dataNascimento = getString(getColumnIndexOrThrow("data_nascimento"))
                 val codigo_dono = getLong(getColumnIndexOrThrow("codigo_dono"))
-                listaPets.add("${codigo} - ${nome} - ${raca} - ${porte} - ${dataNascimento} - ${codigo_dono}")
+                val vacinas = getString(getColumnIndexOrThrow("vacinas"))
+                listaPets.add("${codigo} - ${nome} - ${raca} - ${porte} - ${dataNascimento} - ${codigo_dono} - ${vacinas}")
             }
         }
         cursor.close()
@@ -76,7 +79,8 @@ class PetDAO(banco: Banco) {
                 val porte = getString(getColumnIndexOrThrow("porte"))
                 val dataNascimento = getString(getColumnIndexOrThrow("data_nascimento"))
                 val codigo_dono = getLong(getColumnIndexOrThrow("codigo_dono"))
-                listaPets.add("${codigo} - ${nome} - ${raca} - ${porte} - ${dataNascimento} - ${codigo_dono}")
+                val vacinas = getString(getColumnIndexOrThrow("vacinas"))
+                listaPets.add("${codigo} - ${nome} - ${raca} - ${porte} - ${dataNascimento} - ${codigo_dono} - ${vacinas}")
             }
         }
         cursor.close()
@@ -91,6 +95,7 @@ class PetDAO(banco: Banco) {
             put("porte", pet.porte)
             put("data_nascimento", pet.dataNascimento)
             put("codigo_dono", pet.codigo_dono)
+            put("vacinas", pet.vacinas)
         }
         val condicao = "codigo = ${pet.codigo}"
         val confirmaUpdate = db_update.update("pets", cv_valores, condicao, null)
