@@ -3,6 +3,7 @@ package com.controlevacinacao.extiv.controller
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.controlevacinacao.extiv.R
 import com.controlevacinacao.extiv.banco.Banco
@@ -42,9 +43,18 @@ class TelaEdicaoUsuario : AppCompatActivity() {
 
 
         bt_update_user_edit_screen.setOnClickListener {
-            usuario.nome = et_name_user_edit_screen.text.toString()
-            usuario.email = et_email_user_edit_screen.text.toString()
-            usuarioDAO.update(usuario)
+            try {
+                // Captura os valores dos campos de texto
+                usuario.nome = et_name_user_edit_screen.text?.toString().orEmpty()
+                usuario.email = et_email_user_edit_screen.text?.toString().orEmpty()
+
+                // Chama o método de atualização no DAO
+                usuarioDAO.update(usuario)
+                Toast.makeText(this, "Usuário atualizado com sucesso!", Toast.LENGTH_SHORT).show()
+
+            } catch (e: Exception) {
+                Toast.makeText(this, "Erro ao atualizar usuário.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         bt_return_user_edit_screen.setOnClickListener {
