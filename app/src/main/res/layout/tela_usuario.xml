@@ -1,22 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controller.TelaUsuario">
-
-    <ListView
-        android:id="@+id/lv_pets_user_screen"
-        android:layout_width="350dp"
-        android:layout_height="180dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.747" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bt_return_user_screen"
@@ -29,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.01"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"/>
 
     <LinearLayout
         android:id="@+id/ll_box_user_screen"
@@ -48,10 +37,10 @@
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/bee"
+            android:src="@drawable/placeholder"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="16dp"
-            tools:srcCompat="@drawable/bee" />
+            tools:srcCompat="@drawable/placeholder"/>
 
         <LinearLayout
             android:id="@+id/ll_user_data_user_screen"
@@ -71,7 +60,7 @@
                 android:layout_height="35dp"
                 android:textAlignment="center"
                 android:textSize="27sp"
-                tools:text="DaviChaves" />
+                tools:text="DaviChaves"/>
 
             <TextView
                 android:id="@+id/tv_uid_user_screen"
@@ -79,7 +68,7 @@
                 android:layout_height="35dp"
                 android:paddingLeft="10dp"
                 android:textSize="20sp"
-                tools:text="UID: 000000000" />
+                tools:text="UID: 000000000"/>
 
             <TextView
                 android:id="@+id/textView8"
@@ -87,7 +76,7 @@
                 android:layout_height="35dp"
                 android:text="🐶🐱🦝"
                 android:textAlignment="center"
-                android:textSize="27sp" />
+                android:textSize="27sp"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -102,7 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.25"/>
 
     <ImageView
         android:id="@+id/imageView4"
@@ -114,6 +103,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.25"
-        app:srcCompat="@drawable/plussign" />
+        app:srcCompat="@drawable/plussign"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPetUserScreen"
+        android:layout_width="380dp"
+        android:layout_height="316dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.939" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

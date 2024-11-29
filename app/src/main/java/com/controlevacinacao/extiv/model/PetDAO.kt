@@ -63,6 +63,26 @@ class PetDAO(banco: Banco) {
         return (listaPets)
     }
 
+    fun selectComWhereCodPet(codigo: Long): ArrayList<String> {
+        var listaPets = ArrayList<String>()
+        val db_read = this.banco.readableDatabase
+        var cursor = db_read.rawQuery("SELECT * FROM pets WHERE codigo = ${codigo}", null)
+
+        with(cursor) {
+            while (moveToNext()) {
+                val codigo = getLong(getColumnIndexOrThrow("codigo"))
+                val nome = getString(getColumnIndexOrThrow("nome"))
+                val raca = getString(getColumnIndexOrThrow("raca"))
+                val porte = getString(getColumnIndexOrThrow("porte"))
+                val dataNascimento = getString(getColumnIndexOrThrow("data_nascimento"))
+                val codigo_dono = getLong(getColumnIndexOrThrow("codigo_dono"))
+                listaPets.add("${codigo} - ${nome} - ${raca} - ${porte} - ${dataNascimento} - ${codigo_dono}")
+            }
+        }
+        cursor.close()
+        return (listaPets)
+    }
+
     fun update(pet: Pet) {
         val db_update = this.banco.writableDatabase
         var cv_valores = ContentValues().apply {

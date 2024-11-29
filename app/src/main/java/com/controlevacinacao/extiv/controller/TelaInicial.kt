@@ -45,7 +45,7 @@ class TelaInicial : AppCompatActivity() {
 
             for(usuario in listaUsuarios){
                 var dadosUsuario = usuario.split(" - ").toTypedArray()
-                Log.i("Teste", "${dadosUsuario[4]} - ${toolsEncryption.encrypt(et_password_initial_screen.text.toString())}")
+                //Log.i("Teste", "${dadosUsuario[4]} - ${toolsEncryption.encrypt(et_password_initial_screen.text.toString())}")
 
                 if(dadosUsuario[3].toString().equals(et_user_initial_screen.text.toString()) &&
                     dadosUsuario[4].toString().equals(toolsEncryption.encrypt(et_password_initial_screen.text.toString()))){
