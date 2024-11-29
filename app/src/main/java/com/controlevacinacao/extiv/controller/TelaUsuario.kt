@@ -107,13 +107,24 @@ class TelaUsuario : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
-        val bundle = intent.getBundleExtra("user")!!
-        tv_name_user_screen.text = bundle.getString("userName", "").toString()
-        tv_uid_user_screen.text = "UID: ${bundle.getInt("userCode", 0)}"
-        userCode = bundle.getInt("userCode", 0).toString().toLong()
-        // Atualizar lista de pets ao voltar para esta tela
         val dataBase = Banco.getInstance(this)
+        val usuarioDAO = UsuarioDAO(dataBase)
+        val usuarioAtualizado = usuarioDAO.selectComWhere(userCode)
+
+        if (usuarioAtualizado != null) {
+            val usuario = usuarioAtualizado[0].split("-")
+
+            if (usuario.size >= 2) {
+                tv_name_user_screen.text = usuario[1]
+                tv_uid_user_screen.text = "UID: ${usuario[0]}"
+            } else {
+                Toast.makeText(this, "Erro ao carregar dados do usuário.", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(this, "Erro ao carregar dados do usuário.", Toast.LENGTH_SHORT).show()
+        }
+
+        // Atualizar lista de pets ao voltar para esta tela
         val petDAO = PetDAO(dataBase)
         petList = mostrarPets(petDAO, userCode)
         petAdapter.updateList(petList)
