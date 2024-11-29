@@ -62,15 +62,18 @@ class UsuarioDAO(banco: Banco) {
 
     fun update(usuario: Usuario) {
         val db_update = this.banco.writableDatabase
-        var cv_valores = ContentValues().apply {
+        val cv_valores = ContentValues().apply {
             put("nome", usuario.nome)
             put("email", usuario.email)
             put("usuario", usuario.usuario)
             put("senha", usuario.senha)
         }
-        val condicao = "codigo = ${usuario.codigo}"
-        val confirmaUpdate = db_update.update("usuarios", cv_valores, condicao, null)
+        val codigo = usuario.codigo
+        val condicao = "codigo = ?"
+        // Executar o update e registrar no log
+        db_update.update("usuarios", cv_valores, condicao, arrayOf(usuario.codigo.toString()))
     }
+
 
     fun delete(codigo: Int) {
         val db_delete = this.banco.writableDatabase
