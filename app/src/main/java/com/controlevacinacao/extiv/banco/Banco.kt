@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 2) {
+class Banco(context: Context): SQLiteOpenHelper(context, "DataBase", null, 3) {
 
     companion object {
         @Volatile

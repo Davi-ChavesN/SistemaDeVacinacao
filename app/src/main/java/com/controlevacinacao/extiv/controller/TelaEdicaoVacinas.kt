@@ -68,6 +68,7 @@ class TelaEdicaoVacinas : AppCompatActivity() {
     fun mostrarVacinas(vacinaDAO: VacinaDAO): ArrayList<Vacina> {
         val novaLista = ArrayList<Vacina>() // Crie uma nova lista local
         val listaDeVacinas = vacinaDAO.select()
+        Log.i("mostrar vacinas", "${listaDeVacinas}")
         for (valor in listaDeVacinas) {
             val dadosSeparados = valor.split(" - ")
             if (dadosSeparados.size >= 3) { // Garantir que existam ao menos 3 elementos
