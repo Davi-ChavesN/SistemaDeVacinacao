@@ -26,6 +26,8 @@ class TelaEdicaoVacinas : AppCompatActivity() {
     private lateinit var vacinaList: ArrayList<Vacina>
     private lateinit var vacinaAdapter: VacinaAdapter
 
+    private val selectedVacinas = mutableMapOf<Int, Boolean>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tela_edicao_vacinas)
@@ -36,6 +38,7 @@ class TelaEdicaoVacinas : AppCompatActivity() {
         rvVaccineEditScreen = findViewById(R.id.rvVaccineEditScreen)
         rvVaccineEditScreen.setHasFixedSize(true)
         rvVaccineEditScreen.layoutManager = LinearLayoutManager(this)
+
 
         val bundleVacina = intent.getBundleExtra("vacinas")
         if (bundleVacina == null) {

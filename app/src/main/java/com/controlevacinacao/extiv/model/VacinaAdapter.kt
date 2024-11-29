@@ -3,6 +3,7 @@ package com.controlevacinacao.extiv.model
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.controlevacinacao.extiv.R
@@ -14,6 +15,7 @@ class VacinaAdapter(private val vacinaList: ArrayList<Vacina>):
 
     class VacinaViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val textView: TextView = itemView.findViewById(R.id.tvVacinaItem)
+        val checkBox: CheckBox = itemView.findViewById(R.id.cbVacinaItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VacinaViewHolder {
