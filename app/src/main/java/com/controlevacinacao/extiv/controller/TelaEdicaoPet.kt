@@ -22,6 +22,7 @@ class TelaEdicaoPet : AppCompatActivity() {
     private lateinit var etBreedPetEditScreen: EditText
     private lateinit var etBirthdatePetEditScreen: EditText
     private lateinit var btUpdatePetEditScreen: Button
+    private lateinit var btDeletPetEditScreen: Button
     private lateinit var rg_size_pet_edit_screen: RadioGroup
     private lateinit var rb_size_small_pet_edit_screen: RadioButton
     private lateinit var rb_size_medium_pet_edit_screen: RadioButton
@@ -36,6 +37,7 @@ class TelaEdicaoPet : AppCompatActivity() {
         etBreedPetEditScreen = findViewById(R.id.et_breed_pet_edit_screen)
         etBirthdatePetEditScreen = findViewById(R.id.et_birthdate_pet_edit_screen)
         btUpdatePetEditScreen = findViewById(R.id.bt_update_pet_edit_screen)
+        btDeletPetEditScreen = findViewById(R.id.btDeletePetEditScreen)
         rg_size_pet_edit_screen = findViewById(R.id.rg_size_pet_edit_screen)
         rb_size_small_pet_edit_screen = findViewById(R.id.rb_size_small_pet_edit_screen)
         rb_size_medium_pet_edit_screen = findViewById(R.id.rb_size_medium_pet_edit_screen)
@@ -81,6 +83,12 @@ class TelaEdicaoPet : AppCompatActivity() {
             petDAO.update(pet)
             Log.i("TESTE", "${pet.codigo} - ${pet.nome} - ${pet.raca} - ${pet.porte} - ${pet.dataNascimento} - ${pet.codigo_dono}")
             Toast.makeText(this, "Pet atualizado com sucesso", Toast.LENGTH_SHORT).show()
+        }
+
+        btDeletPetEditScreen.setOnClickListener {
+            petDAO.delete(pet.codigo)
+            Toast.makeText(this, "Pet deletado com sucesso", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
         btReturnPetEditScreen.setOnClickListener {
