@@ -29,8 +29,8 @@ class VacinaDAO(banco: Banco) {
         with(cursor) {
             while (moveToNext()) {
                 val codigo = getLong(getColumnIndexOrThrow("codigo"))
-                val nome = getLong(getColumnIndexOrThrow("nome"))
-                val descricao = getLong(getColumnIndexOrThrow("descricao"))
+                val nome = getString(getColumnIndexOrThrow("nome"))
+                val descricao = getString(getColumnIndexOrThrow("descricao"))
                 listaVacinas.add("${codigo} - ${nome} - ${descricao}")
             }
         }
@@ -46,8 +46,8 @@ class VacinaDAO(banco: Banco) {
         with(cursor) {
             while (moveToNext()) {
                 val codigo = getLong(getColumnIndexOrThrow("codigo"))
-                val nome = getLong(getColumnIndexOrThrow("nome"))
-                val descricao = getLong(getColumnIndexOrThrow("descricao"))
+                val nome = getString(getColumnIndexOrThrow("nome"))
+                val descricao = getString(getColumnIndexOrThrow("descricao"))
                 listaVacinas.add("${codigo} - ${nome} - ${descricao}")
             }
         }
