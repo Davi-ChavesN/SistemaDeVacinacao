@@ -1,5 +1,6 @@
 package com.controlevacinacao.extiv.controller
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -23,6 +24,7 @@ class TelaEdicaoPet : AppCompatActivity() {
     private lateinit var etBirthdatePetEditScreen: EditText
     private lateinit var btUpdatePetEditScreen: Button
     private lateinit var btDeletPetEditScreen: Button
+    private lateinit var btVaccinePetEditScreen: Button
     private lateinit var rg_size_pet_edit_screen: RadioGroup
     private lateinit var rb_size_small_pet_edit_screen: RadioButton
     private lateinit var rb_size_medium_pet_edit_screen: RadioButton
@@ -38,6 +40,7 @@ class TelaEdicaoPet : AppCompatActivity() {
         etBirthdatePetEditScreen = findViewById(R.id.et_birthdate_pet_edit_screen)
         btUpdatePetEditScreen = findViewById(R.id.bt_update_pet_edit_screen)
         btDeletPetEditScreen = findViewById(R.id.btDeletePetEditScreen)
+        btVaccinePetEditScreen = findViewById(R.id.btVaccinePetEditScreen)
         rg_size_pet_edit_screen = findViewById(R.id.rg_size_pet_edit_screen)
         rb_size_small_pet_edit_screen = findViewById(R.id.rb_size_small_pet_edit_screen)
         rb_size_medium_pet_edit_screen = findViewById(R.id.rb_size_medium_pet_edit_screen)
@@ -52,7 +55,7 @@ class TelaEdicaoPet : AppCompatActivity() {
         var pets = petDAO.selectComWhereCodPet(petCode)
         var dadosSeparados = pets[0].split(" - ").toTypedArray()
         var pet = Pet(dadosSeparados[0].toInt(), dadosSeparados[1], dadosSeparados[2],
-            dadosSeparados[3], dadosSeparados[4], dadosSeparados[5].toInt())
+            dadosSeparados[3], dadosSeparados[4], dadosSeparados[5].toInt(), dadosSeparados[6])
 
         etNamePetEditScreen.setText(pet.nome)
         etBreedPetEditScreen.setText(pet.raca)
@@ -79,7 +82,7 @@ class TelaEdicaoPet : AppCompatActivity() {
             }else{
                 porte = "Isso não deveria estar aqui"
             }
-            var pet = Pet(pet.codigo, nome, raca, porte, dataNascimento, pet.codigo_dono)
+            var pet = Pet(pet.codigo, nome, raca, porte, dataNascimento, pet.codigo_dono, pet.vacinas)
             petDAO.update(pet)
             Log.i("TESTE", "${pet.codigo} - ${pet.nome} - ${pet.raca} - ${pet.porte} - ${pet.dataNascimento} - ${pet.codigo_dono}")
             Toast.makeText(this, "Pet atualizado com sucesso", Toast.LENGTH_SHORT).show()
@@ -89,6 +92,14 @@ class TelaEdicaoPet : AppCompatActivity() {
             petDAO.delete(pet.codigo)
             Toast.makeText(this, "Pet deletado com sucesso", Toast.LENGTH_SHORT).show()
             finish()
+        }
+
+        btVaccinePetEditScreen.setOnClickListener {
+            val chamarTelaVacinas = Intent(applicationContext, TelaEdicaoVacinas::class.java)
+            var bundleVacinas = Bundle()
+            bundleVacinas.putInt("codePet", pet.codigo)
+            chamarTelaVacinas.putExtra("vacinas", bundleVacinas)
+            startActivity(chamarTelaVacinas)
         }
 
         btReturnPetEditScreen.setOnClickListener {

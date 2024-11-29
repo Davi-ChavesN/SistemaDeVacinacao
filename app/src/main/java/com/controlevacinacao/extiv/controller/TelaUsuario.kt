@@ -130,7 +130,8 @@ class TelaUsuario : AppCompatActivity() {
                 dadosSeparados[2],
                 dadosSeparados[3],
                 dadosSeparados[4],
-                dadosSeparados[5].toInt()
+                dadosSeparados[5].toInt(),
+                dadosSeparados[6]
             )
             novaLista.add(pet)
         }
