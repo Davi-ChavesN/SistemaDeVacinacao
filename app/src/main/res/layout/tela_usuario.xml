@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".controller.TelaUsuario">
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="459dp"
+        android:layout_height="441dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/project" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bt_return_user_screen"
         android:layout_width="wrap_content"
@@ -14,33 +25,33 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"/>
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
     <LinearLayout
         android:id="@+id/ll_box_user_screen"
-        android:layout_width="316dp"
+        android:layout_width="358dp"
         android:layout_height="105dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintHorizontal_bias="0.29"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026">
+        app:layout_constraintVertical_bias="0.29">
 
         <ImageView
             android:id="@+id/iv_user_screen"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/placeholder"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="16dp"
-            tools:srcCompat="@drawable/placeholder"/>
+            tools:srcCompat="@drawable/placeholder" />
 
         <LinearLayout
             android:id="@+id/ll_user_data_user_screen"
@@ -58,9 +69,9 @@
                 android:id="@+id/tv_name_user_screen"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:textAlignment="center"
-                android:textSize="27sp"
-                tools:text="DaviChaves"/>
+                android:paddingLeft="10dp"
+                android:textSize="20sp"
+                tools:text="DaviChaves" />
 
             <TextView
                 android:id="@+id/tv_uid_user_screen"
@@ -68,7 +79,7 @@
                 android:layout_height="35dp"
                 android:paddingLeft="10dp"
                 android:textSize="20sp"
-                tools:text="UID: 000000000"/>
+                tools:text="UID: 000000000" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -76,7 +87,7 @@
                 android:layout_height="35dp"
                 android:text="🐶🐱🦝"
                 android:textAlignment="center"
-                android:textSize="27sp"/>
+                android:textSize="27sp" />
 
         </LinearLayout>
     </LinearLayout>
@@ -89,9 +100,10 @@
         android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25"/>
+        app:layout_constraintVertical_bias="0.499" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -99,16 +111,16 @@
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintHorizontal_bias="0.844"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25"
-        app:srcCompat="@drawable/plussign"/>
+        app:layout_constraintVertical_bias="0.497"
+        app:srcCompat="@drawable/plussign" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPetUserScreen"
-        android:layout_width="380dp"
-        android:layout_height="316dp"
+        android:layout_width="381dp"
+        android:layout_height="259dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"
